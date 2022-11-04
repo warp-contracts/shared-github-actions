@@ -5,11 +5,11 @@ on:
     inputs:
       project:
         description: 'The project to deploy'
-        required: true
+        required: false
         type: string
       env:
         description: 'Environment'
-        required: true
+        required: false
         type: string
       working-directory:
         type: string
