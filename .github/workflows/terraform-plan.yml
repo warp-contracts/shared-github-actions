@@ -23,11 +23,11 @@ on:
         type: string
         required: false
         default: ''
-#     secrets:
-#       aws-id:
-#         required: true
-#       aws-secret:
-#         required: true
+    secrets:
+      aws-id:
+        required: true
+      aws-secret:
+        required: true
 
 env:
   TF_CLI_ARGS: "-no-color"
@@ -35,7 +35,6 @@ env:
 jobs:
   plan:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.env }}
     steps:
     - run: env
     - uses: actions/checkout@v3
