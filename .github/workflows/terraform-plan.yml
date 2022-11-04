@@ -20,7 +20,7 @@ on:
         required: false
         default: false
     secrets:
-      aws-key:
+      aws-id:
         required: true
       aws-secret:
         required: true
