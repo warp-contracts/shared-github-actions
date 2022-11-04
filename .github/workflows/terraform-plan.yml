@@ -19,6 +19,10 @@ on:
         type: boolean
         required: false
         default: false
+      task-prefix:
+        type: string
+        required: false
+        default: ''
     secrets:
       aws-id:
         required: true
@@ -52,7 +56,7 @@ jobs:
     - name: Terraform Tests All
       id: tests
       run: | 
-        test "${{ inputs.use-task }}" && task tf-${{ inputs.project }}-${{ inputs.env }}:tests && exit 0
+        test "${{ inputs.use-task }}" && task ${{ inputs.task-prefix }}:tests && exit 0
         terraform fmt -check -recursive
         terraform init
         terraform validate -no-color
@@ -68,7 +72,7 @@ jobs:
     - name: Terraform Plan ${{ inputs.env }}
       id: plan
       run: |
-        test "${{ inputs.use-task }}" && task tf-${{ inputs.project }}-${{ inputs.env }}:plan && exit 0
+        test "${{ inputs.use-task }}" && task ${{ inputs.task-prefix }}:plan && exit 0
         terraform plan
       continue-on-error: true
       working-directory: ${{ inputs.working-directory }}
